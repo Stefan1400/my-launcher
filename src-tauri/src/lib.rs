@@ -52,6 +52,10 @@ pub fn run() {
                 app.global_shortcut().register(shortcut)?;
             }
 
+            if let Some(window) = app.get_webview_window("main") {
+                window.set_always_on_top(true)?;
+            }
+
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![open_youtube])
