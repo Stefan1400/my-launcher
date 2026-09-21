@@ -1,5 +1,17 @@
 use tauri::Manager;
 
+#[tauri::command]
+fn open_youtube() -> Result<(), String> {
+    std::process::Command::new(
+        r"C:\Users\Jari\AppData\Local\Microsoft\WindowsApps\DuckDuckGo.exe",
+    )
+    .arg("https://www.youtube.com")
+    .spawn()
+    .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -42,7 +54,7 @@ pub fn run() {
 
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![])
+        .invoke_handler(tauri::generate_handler![open_youtube])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
