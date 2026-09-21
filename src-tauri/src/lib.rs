@@ -1,4 +1,4 @@
-use tauri::Manager;
+use tauri::{Manager, WindowEvent};
 
 #[tauri::command]
 fn open_youtube() -> Result<(), String> {
@@ -54,6 +54,17 @@ pub fn run() {
 
             if let Some(window) = app.get_webview_window("main") {
                 window.set_always_on_top(true)?;
+
+                window.on_window_event({
+                    let window = window.clone();
+
+                    move |event| {
+                        if let WindowEvent::CloseRequested { api, .. } = event {
+                            api.prevent_close();
+                            let _ = window.hide();
+                        }
+                    }
+                });
             }
 
             Ok(())
