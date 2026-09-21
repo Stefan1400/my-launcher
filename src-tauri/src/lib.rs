@@ -12,6 +12,58 @@ fn open_youtube() -> Result<(), String> {
     Ok(())
 }
 
+#[tauri::command]
+fn open_spotify() -> Result<(), String> {
+    std::process::Command::new("explorer.exe")
+        .arg(r"shell:AppsFolder\SpotifyAB.SpotifyMusic_zpdnekdrzrea0!Spotify")
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
+#[tauri::command]
+fn open_preply() -> Result<(), String> {
+    std::process::Command::new(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+        .arg("https://preply.com/en/home")
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
+#[tauri::command]
+fn open_roblox() -> Result<(), String> {
+    std::process::Command::new(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+        .arg("https://www.roblox.com/home")
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
+#[tauri::command]
+fn open_ato() -> Result<(), String> {
+    std::process::Command::new(
+        r"C:\Users\Jari\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+    )
+    .arg(r"C:\Users\Jari\OneDrive\ato")
+    .spawn()
+    .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
+#[tauri::command]
+fn open_chat_gpt() -> Result<(), String> {
+    std::process::Command::new(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+        .arg("https://chatgpt.com/")
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -69,7 +121,14 @@ pub fn run() {
 
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![open_youtube])
+        .invoke_handler(tauri::generate_handler![
+            open_youtube,
+            open_spotify,
+            open_preply,
+            open_roblox,
+            open_ato,
+            open_chat_gpt,
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
