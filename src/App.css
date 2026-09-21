@@ -1,116 +1,286 @@
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
+* {
+  box-sizing: border-box;
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafb);
-}
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+  font-family:
+    "Sora",
+    "Inter",
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
 
-  color: #0f0f0f;
-  background-color: #f6f6f6;
+  color: #f5f5f5;
+  background: #090909;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-.container {
+html,
+body,
+#root,
+.launcher {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+.launcher::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body,
+#root {
   margin: 0;
-  padding-top: 10vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
-}
-
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-h1 {
-  text-align: center;
-}
-
-input,
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+body {
+  background: #090909;
 }
 
 button {
+  font: inherit;
+}
+
+/* Main launcher */
+
+.launcher {
+  min-height: 100vh;
+  padding: 56px 32px;
+  /* position: fixed; */
+
+  background:
+    radial-gradient(
+      circle at 50% -15%,
+      rgba(255, 255, 255, 0.07),
+      transparent 45%
+    ),
+    #090909;
+}
+
+.launcher-container {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.launcher-header {
+  margin-bottom: 52px;
+}
+
+.launcher-header h1 {
+  margin: 0;
+
+  color: #fafafa;
+
+  font-size: clamp(32px, 5vw, 46px);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+/* Sections */
+
+.launcher-section {
+  margin-bottom: 44px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  margin: 0;
+
+  color: #a1a1a1;
+
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.section-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 23px;
+  height: 21px;
+  padding: 0 7px;
+
+  border: 1px solid #292929;
+  border-radius: 999px;
+
+  color: #737373;
+  background: #141414;
+
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Button grid */
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* Launcher buttons */
+
+.launcher-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 96px;
+  padding: 22px;
+
+  border: 1px solid #252525;
+  border-radius: 16px;
+
   cursor: pointer;
+
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-align: left;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 2px 6px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
-button:hover {
-  border-color: #396cd8;
-}
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
+.launcher-button.Preply {
+  background-color: #ff7aac;
+  color: #121117;
 }
 
-input,
-button {
-  outline: none;
+.launcher-button.Ato {
+  background-color: #0d1117;
+  color: #FFF;
 }
 
-#greet-input {
-  margin-right: 5px;
+.launcher-button.Roblox {
+  background-color: #00A2FF;
+  color: #FFF;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
+.launcher-button.YouTube {
+  background-color: #cc0000;
+  color: #FFF;
+}
+
+.launcher-button.Spotify {
+  background-color: #1DB954;
+  color: #FFF;
+}
+
+.launcher-button.Tubi {
+  background-color: #40026D;
+  color: #FFFF13;
+}
+
+.launcher-button.StardewValley {
+  background-color: #C88A4A;
+  color: #5A2E12;
+  /* border: 4px solid #A66A35; */
+}
+
+.launcher-button.Fortnite {
+  background-color: #2196C4;
+  color: #FFF;
+}
+
+.launcher-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.launcher-button:active {
+  transform: translateY(-1px);
+}
+
+.launcher-button:focus-visible {
+  outline: 2px solid #777;
+  outline-offset: 3px;
+}
+
+/* Smaller horizontal windows */
+
+@media (max-width: 700px) {
+  .launcher {
+    padding: 36px 22px;
   }
 
-  a:hover {
-    color: #24c8db;
+  .launcher-header {
+    margin-bottom: 40px;
   }
 
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
+  .button-grid {
+    grid-template-columns: 1fr;
   }
-  button:active {
-    background-color: #0f0f0f69;
+
+  .launcher-button {
+    min-height: 76px;
+  }
+}
+
+/* Very small windows */
+
+@media (max-width: 420px) {
+  .launcher {
+    padding: 28px 16px;
+  }
+
+  .launcher-header {
+    margin-bottom: 32px;
+  }
+
+  .launcher-section {
+    margin-bottom: 34px;
+  }
+
+  .launcher-button {
+    min-height: 70px;
+    padding: 18px;
+  }
+}
+
+@media (min-width: 701px) {
+  .launcher {
+    padding: 36px 22px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
 }

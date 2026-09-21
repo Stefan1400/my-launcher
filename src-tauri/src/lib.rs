@@ -64,6 +64,36 @@ fn open_chat_gpt() -> Result<(), String> {
     Ok(())
 }
 
+#[tauri::command]
+fn open_stardew_valley() -> Result<(), String> {
+    std::process::Command::new("explorer.exe")
+        .arg("steam://rungameid/413150")
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
+#[tauri::command]
+fn open_tubi() -> Result<(), String> {
+    std::process::Command::new(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+        .arg("https://tubitv.com/")
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
+#[tauri::command]
+fn open_fortnite() -> Result<(), String> {
+    std::process::Command::new("explorer.exe")
+        .arg("com.epicgames.launcher://apps/fn%3A4fe75bbc5a674f4f9b356b5c90567da5%3AFortnite?action=launch&silent=true")
+        .spawn()
+        .map_err(|error| error.to_string())?;
+
+    Ok(())
+}
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
@@ -128,6 +158,9 @@ pub fn run() {
             open_roblox,
             open_ato,
             open_chat_gpt,
+            open_stardew_valley,
+            open_tubi,
+            open_fortnite,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
